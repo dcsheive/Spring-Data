@@ -21,7 +21,7 @@ public class SongService {
 		return songRepo.findByArtistContaining(artist);
 	}
 	public List<Song> topTen(){
-		return songRepo.OrderByRatingDesc();
+		return songRepo.findTop10ByOrderByRatingDesc();
 	}
 	public Song createSong(Song s) {
 		return songRepo.save(s);
