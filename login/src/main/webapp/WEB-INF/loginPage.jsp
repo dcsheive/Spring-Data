@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <h1>Login</h1>

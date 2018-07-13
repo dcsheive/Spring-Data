@@ -7,6 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Registration Page</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <h1>Register!</h1>
@@ -15,18 +17,18 @@
     <form:form method="POST" action="/registration" modelAttribute="user">
         <p>
             <form:label path="email">Email:</form:label>
-            <form:errors path="email" class="red"/>
             <form:input type="email" path="email"/>
+            <form:errors path="email" class="red"/>
         </p>
         <p>
             <form:label path="password">Password:</form:label>
-            <form:errors path="password" class="red"/>
             <form:password path="password"/>
+            <form:errors path="password" class="red"/>
         </p>
         <p>
             <form:label path="passwordConfirmation">Password Confirmation:</form:label>
-			<form:errors path="passwordConfirmation" class="red"/>
             <form:password path="passwordConfirmation"/>
+			<form:errors path="passwordConfirmation" class="red"/>
         </p>
         <input type="submit" value="Register!"/>
     </form:form>

@@ -7,7 +7,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Welcome</title>
-</head>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
 <body>
 	<h1>Welcome, <c:out value="${user.email}" /></h1>
 	<a href="/logout">Logout</a>
