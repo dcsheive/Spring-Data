@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,10 @@
 	<h1>Welcome, <c:out value="${user.firstName}" /></h1>
 	<a href="/logout">Logout</a>
 	<h2>Events in your State</h2>
+    <c:if test="${localEvents.isEmpty()}">
+    	<h4>No events in your state</h4>
+    </c:if>
+    <c:if test="${!localEvents.isEmpty()}">
 	<table class="table">
     <thead>
         <tr>
@@ -27,7 +32,7 @@
         <c:forEach items="${localEvents}" var="event">
         <tr>
             <td><a href="/events/${event.id}"><c:out value="${event.name}"/></a></td>
-            <td><c:out value="${event.date}"/></td>
+            <td><fmt:formatDate pattern="MMMMMMM dd, yyyy" value="${event.date}" /></td>
             <td><c:out value="${event.city}"/></td>
             <td><c:out value="${event.poster.firstName}"/></td>
             <td>
@@ -51,14 +56,18 @@
         </c:forEach>
     </tbody>
   	</table>
+    </c:if>
 	<h2>Other Events</h2>
+    <c:if test="${notEvents.isEmpty()}">
+    	<h4>No events outside your state</h4>
+    </c:if>
+    <c:if test="${!notEvents.isEmpty()}">
 	<table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Date</th>
             <th>Location</th>
-            <th>State</th>
             <th>Host</th>
             <th>Actions</th>
         </tr>
@@ -67,7 +76,7 @@
         <c:forEach items="${notEvents}" var="event">
         <tr>
             <td><a href="/events/${event.id}"><c:out value="${event.name}"/></a></td>
-            <td><c:out value="${event.date}"/></td>
+            <td><fmt:formatDate pattern="MMMMMMM dd, yyyy" value="${event.date}" /></td>
             <td><c:out value="${event.city}"/>, <c:out value="${event.state}"/></td>
             <td><c:out value="${event.poster.firstName}"/></td>
             <td>
@@ -88,6 +97,7 @@
         </c:forEach>
     </tbody>
     </table>
+    </c:if>
     <h2>New Event</h2>
     <form:form method="POST" action="/events" modelAttribute="event">
         <p>
@@ -103,6 +113,8 @@
         <p>
             <form:label path="state">State:</form:label>
             <form:select path="state">
+                <form:option value="${user.state}" />
+            
                 <c:forEach items="${states}" var="state">
                     <form:option value="${state}">${state}</form:option>
                 </c:forEach>

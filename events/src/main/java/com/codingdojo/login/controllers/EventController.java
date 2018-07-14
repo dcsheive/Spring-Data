@@ -28,12 +28,10 @@ public class EventController {
 	private final UserService uServ;
 	private final EventService eServ;
 	private final MessageService mServ;
-	private final EventValidator eValid;
-	public EventController(UserService uServ, EventService eServ, MessageService mServ, EventValidator eValid) {
+	public EventController(UserService uServ, EventService eServ, MessageService mServ) {
 		this.uServ = uServ;
 		this.eServ = eServ;
 		this.mServ = mServ;
-		this.eValid = eValid;
 	}
 	@RequestMapping("")
     public String home(HttpSession session, Model model, @ModelAttribute("event") Event event) {
@@ -55,7 +53,6 @@ public class EventController {
     }
 	@RequestMapping(value="",method = RequestMethod.POST)
 	public String addEvent(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model, HttpSession session) {
-		eValid.validate(event, result);
 		if(result.hasErrors()) {
 			Long id = (Long) session.getAttribute("user");
 			User user = uServ.findUserById(id);
@@ -118,7 +115,6 @@ public class EventController {
 	}
 	@RequestMapping(value="/{id}/edit", method=RequestMethod.PUT)
     public String update(@Valid @ModelAttribute("event") Event event, BindingResult result, Model model, @PathVariable("id") Long eventID) {
-		eValid.validate(event, result);
         if (result.hasErrors()) {
         	List<String> states = Arrays.asList("AL", "AK", "AZ", "AR", "CA", "CO", "CT","DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA","KS","KY","LA","ME","MD","MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH","NJ","NM",
 	        		"NY","NC" ,"ND" ,"OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");

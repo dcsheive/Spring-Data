@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,10 @@
 		<a href="/events">Home</a>
 		<h1><c:out value="${event.name}"/></h1>
 		<p>Host: <c:out value="${event.poster.firstName}"/> <c:out value="${event.poster.lastName}"/></p>	
-		<p>Date: <c:out value="${event.date}"/></p>	
+		<p>Date: <fmt:formatDate pattern="MMMMMMM dd, yyyy" value="${event.date}" /></p>	
 		<p>Location: <c:out value="${event.city}"/>, <c:out value="${event.state}"/></p>	
 		<p>People who are joining this trip: <c:out value="${joiners}"/></p>
+	<c:if test="${!event.joiners.isEmpty()}">
 		<table class="table">
 	    <thead>
 	        <tr>
@@ -33,6 +35,7 @@
 	        </c:forEach>
 	    </tbody>
 	  	</table>
+	</c:if>
 	</div>
 	
     <div class="box">

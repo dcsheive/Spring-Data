@@ -21,6 +21,7 @@ public class EventValidator implements Validator {
     public void validate(Object target, Errors errors) {
         Event event = (Event) target;
         Date now = new Date();
+        
         if (event.getDate().before(now)) {
         	errors.rejectValue("date", "Before");
         }

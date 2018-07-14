@@ -18,6 +18,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.Future;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,12 +30,14 @@ public class Event {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message="Name cannot by empty!")
+    @Size(min=1,message="Name cannot by empty!")
     private String name;
-    @NotNull(message = "City is required!")
+    @Size(min=1,message = "City is required!")
     private String city;
     private String state;
+    @Future
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message="Date is required!")
     private Date date;
     @Column(updatable=false)
     private Date createdAt;
