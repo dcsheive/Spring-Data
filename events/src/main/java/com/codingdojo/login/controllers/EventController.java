@@ -20,7 +20,6 @@ import com.codingdojo.login.models.User;
 import com.codingdojo.login.services.EventService;
 import com.codingdojo.login.services.MessageService;
 import com.codingdojo.login.services.UserService;
-import com.codingdojo.login.validator.EventValidator;
 
 @Controller
 @RequestMapping("/events")

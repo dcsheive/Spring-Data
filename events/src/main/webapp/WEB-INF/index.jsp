@@ -13,11 +13,11 @@
 <body>
 <div class="box">
 	<h1>Login</h1>
-    <p><c:out value="${error}" /></p>
+    <p class="red"><c:out value="${error}" /></p>
     <form method="post" action="/login">
         <p>
-            <label type="email" for="email">Email</label>
-            <input type="text" id="email" name="email"/>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email"/>
         </p>
         <p>
             <label for="password">Password</label>

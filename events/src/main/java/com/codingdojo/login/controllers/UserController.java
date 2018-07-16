@@ -63,6 +63,7 @@ public class UserController {
             		"NY","NC" ,"ND" ,"OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY");
             model.addAttribute("states", states);
     		model.addAttribute("error", "Could not log you in!");
+    		model.addAttribute("user", new User());
     		return "index.jsp";
     	}
     }
